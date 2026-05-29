@@ -37,7 +37,7 @@ Then('the results should be sorted by initial rate ascending', async function (
   });
 
   expect(isSorted).toBe(true);
-  this.logger.info(`✓ ${rates.length} rates are in ascending order`);
+  this.logger.info(`${rates.length} rates are in ascending order`);
 });
 
 Then('the results should be sorted by monthly payment ascending', async function (
@@ -57,7 +57,7 @@ Then('the results should be sorted by monthly payment ascending', async function
   });
 
   expect(isSorted).toBe(true);
-  this.logger.info(`✓ ${payments.length} monthly payments are in ascending order`);
+  this.logger.info(`${payments.length} monthly payments are in ascending order`);
 });
 
 Then('the results should be sorted by initial rate descending', async function (
@@ -88,7 +88,7 @@ Then('the results should be sorted by initial rate descending', async function (
   }
 
   expect(isSortedDesc || isSortedAsc).toBe(true);
-  this.logger.info(`✓ ${rates.length} rates are in consistent order (descending unsupported fallback)`);
+  this.logger.info(`${rates.length} rates are in consistent order (descending unsupported fallback)`);
 });
 
 Then('the sort order should be maintained after applying filters', async function (
@@ -104,7 +104,7 @@ Then('the sort order should be maintained after applying filters', async functio
   const isSortedDesc = rates.every((r, i) => i === 0 || rates[i - 1] >= r);
 
   expect(isSortedAsc || isSortedDesc).toBe(true);
-  this.logger.info(`✓ Sort order maintained after filter: ${isSortedAsc ? 'ASC' : 'DESC'}`);
+  this.logger.info(`Sort order maintained after filter: ${isSortedAsc ? 'ASC' : 'DESC'}`);
 });
 
 // ─────────────────────────────────────────────
@@ -181,7 +181,7 @@ Then('the results should be filtered to show only {string} products', async func
   if (hasTypeData) {
     const ratio = cardsWithType.length / cards.length;
     expect(ratio).toBeGreaterThan(0.8);
-    this.logger.info(`✓ Filter validation: ${Math.round(ratio * 100)}% cards match filter`);
+    this.logger.info(`Filter validation: ${Math.round(ratio * 100)}% cards match filter`);
   } else {
     this.logger.warn('Product type not extractable from cards — validating count changed instead');
     expect(cards.length).toBeGreaterThanOrEqual(0);
@@ -201,7 +201,7 @@ Then('the filtered count should be less than or equal to the unfiltered count', 
   // Current count should be ≤ results before filtering
   // (stored in searchResultsCount from the Given step)
   expect(currentCount).toBeGreaterThanOrEqual(0);
-  this.logger.info(`✓ Filtered count (${currentCount}) is a valid non-negative number`);
+  this.logger.info(`Filtered count (${currentCount}) is a valid non-negative number`);
 });
 
 Then('the combined filter should narrow down results', async function (this: MortgageWorld) {
@@ -220,7 +220,7 @@ Then('I should see the active filter indicators', async function (this: Mortgage
   ).count();
 
   this.logger.info(`Active filter indicators found: ${indicators}`);
-  // This is informational — UI may show them differently
+  // This UI may show them differently
 });
 
 Then('clearing filters should restore the original count', async function (this: MortgageWorld) {

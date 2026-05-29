@@ -9,15 +9,15 @@ import { DEFAULT_SEARCH } from '../fixtures/mortgageData';
 // API + UI VALIDATION STRATEGY
 // ─────────────────────────────────────────────
 // 1. Network interception captures API response automatically via page.on('response')
-// 2. We also attempt a direct API call as a secondary source
-// 3. We compare the UI-displayed count with the API totalCount
+// 2. I also attempt a direct API call as a secondary source
+// 3. Comparing the UI-displayed count with the API totalCount
 // 4. If counts differ, we check pagination to see if UI is paginated
 
 When('I capture the API response for the current search', async function (
   this: MortgageWorld
 ) {
-  // The network listener in World already captured this automatically
-  // But we also try a direct API call for redundancy
+  
+ 
   const apiClient = new MortgageApiClient();
 
   try {
@@ -35,7 +35,7 @@ When('I capture the API response for the current search', async function (
     this.logger.warn(`Direct API call failed, using intercepted data: ${e}`);
   }
 
-  // Fall back to intercepted network response
+  
   if (!this.apiTotalCount && this.capturedApiResponse.totalCount) {
     this.apiTotalCount = this.capturedApiResponse.totalCount;
     this.logger.info(`Using intercepted API totalCount: ${this.apiTotalCount}`);
@@ -45,7 +45,7 @@ When('I capture the API response for the current search', async function (
 });
 
 When('I wait for the API response to be intercepted', async function (this: MortgageWorld) {
-  // Give network interceptor time to capture the response
+  
   await this.page.waitForTimeout(2000);
 
   if (this.capturedApiResponse.totalCount !== undefined) {
@@ -87,16 +87,16 @@ Then('the UI results count should match the API total count', async function (
     );
     // UI count should be ≤ API total count (it's a page of results)
     expect(uiCount).toBeLessThanOrEqual(apiCount);
-    this.logger.info(`✓ Paginated: UI card count (${uiCount}) ≤ API totalCount (${apiCount})`);
+    this.logger.info(`Paginated: UI card count (${uiCount}) ≤ API totalCount (${apiCount})`);
   } else {
     // No pagination — UI count should equal API totalCount
-    // Allow small tolerance (±2) for loading/rendering differences
+   
     const tolerance = 2;
     const diff = Math.abs(uiCount - apiCount);
 
     expect(diff).toBeLessThanOrEqual(tolerance);
     this.logger.info(
-      `✓ Non-paginated: UI count (${uiCount}) matches API totalCount (${apiCount}) ±${tolerance}`
+      `Non-paginated: UI count (${uiCount}) matches API totalCount (${apiCount}) ±${tolerance}`
     );
   }
 });
@@ -110,7 +110,7 @@ Then('the API total count should be greater than {int}', async function (
     return;
   }
   expect(this.apiTotalCount).toBeGreaterThan(minimum);
-  this.logger.info(`✓ API totalCount (${this.apiTotalCount}) > ${minimum}`);
+  this.logger.info(`API totalCount (${this.apiTotalCount}) > ${minimum}`);
 });
 
 Then('the UI should display a result count', async function (this: MortgageWorld) {
@@ -136,13 +136,13 @@ Then('the UI count should be consistent with page card count', async function (
   if (hasPagination) {
     // With pagination, displayed count is total, card count is per-page
     expect(cardCount).toBeLessThanOrEqual(displayedCount);
-    this.logger.info(`✓ Paginated: ${cardCount} cards rendered out of ${displayedCount} total`);
+    this.logger.info(`Paginated: ${cardCount} cards rendered out of ${displayedCount} total`);
   } else {
     // Without pagination, counts should match (with small tolerance)
     const tolerance = 2;
     const diff = Math.abs(displayedCount - cardCount);
     expect(diff).toBeLessThanOrEqual(tolerance);
-    this.logger.info(`✓ Non-paginated: count text (${displayedCount}) ≈ cards (${cardCount})`);
+    this.logger.info(`Non-paginated: count text (${displayedCount}) ≈ cards (${cardCount})`);
   }
 });
 
@@ -159,11 +159,11 @@ Then('the response status should indicate success', async function (this: Mortga
   this.logger.info(`Successful API calls captured: ${apiLogs.length}`);
   this.logger.info(`All intercepted logs: ${this.networkLogs.length}`);
 
-  // Just verify the page loaded successfully (no 5xx errors from API)
+  // Verify the page loaded successfully (no 5xx errors from API)
   const serverErrors = this.networkLogs.filter(
     (log) => log.status && log.status >= 500
   );
 
   expect(serverErrors.length).toBe(0);
-  this.logger.info(`✓ No server errors detected in ${this.networkLogs.length} requests`);
+  this.logger.info(`No server errors detected in ${this.networkLogs.length} requests`);
 });

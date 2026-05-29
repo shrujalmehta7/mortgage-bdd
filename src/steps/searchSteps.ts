@@ -152,7 +152,7 @@ Then('the results count should be greater than {int}', async function (
   this.searchResultsCount = count;
 
   expect(count).toBeGreaterThan(minimum);
-  this.logger.info(`✓ Results count ${count} > ${minimum}`);
+  this.logger.info(`Results count ${count} > ${minimum}`);
 });
 
 Then('the results count should be at least {int}', async function (
@@ -162,14 +162,14 @@ Then('the results count should be at least {int}', async function (
   const resultsPage = new SearchResultsPage(this.page);
   const count = await resultsPage.getUIResultsCount();
   expect(count).toBeGreaterThanOrEqual(minimum);
-  this.logger.info(`✓ Results count ${count} >= ${minimum}`);
+  this.logger.info(`Results count ${count} >= ${minimum}`);
 });
 
 Then('the results count should change', async function (this: MortgageWorld) {
   const resultsPage = new SearchResultsPage(this.page);
   const newCount = await resultsPage.getUIResultsCount();
   this.logger.info(`Results changed from ${this.searchResultsCount} → ${newCount}`);
-  // Simply verify the count is a valid number
+  // Verify the count is a valid number
   expect(typeof newCount).toBe('number');
   expect(newCount).toBeGreaterThanOrEqual(0);
 });
@@ -181,7 +181,7 @@ Then('the search results should reflect the updated criteria', async function (
   await resultsPage.waitForResultsToLoad();
   const count = await resultsPage.getUIResultsCount();
   this.logger.info(`Updated search results count: ${count}`);
-  // Results could be 0 with restrictive criteria — we just verify the page responded
+  
   expect(count).toBeGreaterThanOrEqual(0);
 });
 
@@ -193,7 +193,7 @@ Then('the results should include lender information', async function (this: Mort
     // Check at least some cards have lender info
     const cardsWithLenders = cards.filter((c) => c.lender && c.lender.length > 0);
     this.logger.info(`Cards with lender info: ${cardsWithLenders.length}/${cards.length}`);
-    // Relaxed check — structural validation
+    // Structural validation
     expect(cards.length).toBeGreaterThan(0);
   }
 });

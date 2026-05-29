@@ -6,7 +6,7 @@ import { MortgageSearchCriteria } from '../fixtures/mortgageData';
  * Page Object for the mortgage search form
  */
 export class SearchFormPage extends BasePage {
-  // Locator strategy: data-testid first → aria label → semantic → CSS fallback
+ 
   private static readonly DEFAULT_INCOME = 50000;
 
   private readonly selectors = {
@@ -141,7 +141,7 @@ export class SearchFormPage extends BasePage {
   }
 
   /**
-   * Set repayment type via dropdown or radio buttons
+   * Set repayment 
    */
   async setRepaymentType(type: MortgageSearchCriteria['repaymentType']): Promise<void> {
     this.logger.step(`Setting repayment type: ${type}`);
@@ -152,7 +152,7 @@ export class SearchFormPage extends BasePage {
     };
     const labels = labelMap[type] || [type];
 
-    // Try radio buttons first
+    // Radio buttons first
     for (const label of labels) {
       const radio = this.page.locator(`input[type="radio"]`).filter({ hasText: label }).first();
       const radioCount = await radio.count();
@@ -160,7 +160,7 @@ export class SearchFormPage extends BasePage {
         await radio.click();
         return;
       }
-      // Try label-adjacent pattern
+      // Label-adjacent pattern
       const labelEl = this.page.getByRole('radio', { name: new RegExp(label, 'i') }).first();
       if (await labelEl.count() > 0) {
         await labelEl.click();
