@@ -1,0 +1,80 @@
+This Node.js version (v24.14.1) has not been tested with this version of Cucumber; it should work normally, but please raise an issue if you see anything unexpected.
+
+ Starting Mortgage BDD Test Suite
+
+
+ Scenario: "UI results count matches API total count"
+[2026-05-28 20:17:30] [[32minfo[39m] [MortgageWorld] Launching chromium browser (headed: false)
+.[2026-05-28 20:17:30] [[32minfo[39m] [SearchFormPage] Navigating to: https://www.mortgageadvicebureau.com/find-a-mortgage/
+F---- FAILED: "UI results count matches API total count"
+   Error: Error: function timed out, ensure the promise resolves within 60000 milliseconds
+    at Timeout.<anonymous> (C:\Users\shruj\Documents\mortgage-bdd\node_modules\@cucumber\cucumber\src\time.ts:52:14)
+  
+Screenshot saved
+Trace saved
+[2026-05-28 20:18:32] [[32minfo[39m] [SearchFormPage] Cookie banner found via accessible button role
+[2026-05-28 20:18:33] [[32minfo[39m] [SearchFormPage] Cookie banner dismissed successfully
+[2026-05-28 20:18:33] [[32minfo[39m] [MortgageWorld] Navigated to mortgage search page
+.
+ Scenario: "Perform a basic mortgage search with standard criteria"
+[2026-05-28 20:18:58] [[32minfo[39m] [MortgageWorld] Launching chromium browser (headed: false)
+.[2026-05-28 20:18:59] [[32minfo[39m] [SearchFormPage] Navigating to: https://www.mortgageadvicebureau.com/find-a-mortgage/
+[2026-05-28 20:19:08] [[32minfo[39m] [SearchFormPage] Cookie banner found via accessible button role
+[2026-05-28 20:19:09] [[32minfo[39m] [SearchFormPage] Cookie banner dismissed successfully
+[2026-05-28 20:19:09] [[32minfo[39m] [MortgageWorld] Navigated to mortgage search page
+.[2026-05-28 20:19:09] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting property value: -ú350,000
+.[2026-05-28 20:19:09] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting deposit amount: -ú70,000
+.[2026-05-28 20:19:10] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting mortgage term: 25 years
+.[2026-05-28 20:19:11] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting repayment type: repayment
+[2026-05-28 20:19:12] [[33mwarn[39m] [SearchFormPage] Could not set repayment type "repayment" GÇö may not be visible on current form
+.[2026-05-28 20:19:12] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Submitting search form
+[2026-05-28 20:19:12] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting income: -ú50,000
+[2026-05-28 20:19:19] [[32minfo[39m] [SearchResultsPage] Waiting for search results to load...
+[2026-05-28 20:19:19] [[32minfo[39m] [MortgageWorld] API captured: https://www.mortgageadvicebureau.com/umbraco/surface/quickquoteresults/getresults GåÆ totalCount: 10
+.[2026-05-28 20:19:19] [[32minfo[39m] [SearchResultsPage] Found 10 result cards via: .product-list.js-product-list .product-wrapper.js-product-wrapper
+[2026-05-28 20:19:20] [[32minfo[39m] [MortgageWorld] Results presence: cards=true, no-results-msg=false
+..PASSED: "Perform a basic mortgage search with standard criteria"
+.
+ Scenario: "Search returns results with valid count"
+[2026-05-28 20:19:22] [[32minfo[39m] [MortgageWorld] Launching chromium browser (headed: false)
+.[2026-05-28 20:19:22] [[32minfo[39m] [SearchFormPage] Navigating to: https://www.mortgageadvicebureau.com/find-a-mortgage/
+[2026-05-28 20:19:28] [[32minfo[39m] [SearchFormPage] Cookie banner found via accessible button role
+[2026-05-28 20:19:29] [[32minfo[39m] [SearchFormPage] Cookie banner dismissed successfully
+[2026-05-28 20:19:29] [[32minfo[39m] [MortgageWorld] Navigated to mortgage search page
+.[2026-05-28 20:19:29] [[32minfo[39m] [SearchFormPage] Filling search form with: {"propertyValue":350000,"depositAmount":70000,"repaymentType":"repayment","mortgageTerm":25,"income":50000,"ltvPercentage":80}
+[2026-05-28 20:19:29] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting property value: -ú350,000
+[2026-05-28 20:19:29] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting deposit amount: -ú70,000
+[2026-05-28 20:19:29] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting mortgage term: 25 years
+[2026-05-28 20:19:30] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting repayment type: repayment
+[2026-05-28 20:19:30] [[33mwarn[39m] [SearchFormPage] Could not set repayment type "repayment" GÇö may not be visible on current form
+[2026-05-28 20:19:30] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting income: -ú50,000
+[2026-05-28 20:19:30] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Submitting search form
+[2026-05-28 20:19:36] [[32minfo[39m] [SearchResultsPage] Waiting for search results to load...
+[2026-05-28 20:19:36] [[32minfo[39m] [MortgageWorld] API captured: https://www.mortgageadvicebureau.com/umbraco/surface/quickquoteresults/getresults GåÆ totalCount: 10
+[2026-05-28 20:19:36] [[32minfo[39m] [SearchResultsPage] Gû¦ STEP: Reading results count from UI
+[2026-05-28 20:19:37] [[32minfo[39m] [SearchResultsPage] Results count text: "Mortgage result"
+[2026-05-28 20:19:37] [[32minfo[39m] [SearchResultsPage] Found 10 result cards via: .product-list.js-product-list .product-wrapper.js-product-wrapper
+[2026-05-28 20:19:37] [[32minfo[39m] [SearchResultsPage] Using fallback card count: 10
+.[2026-05-28 20:19:37] [[32minfo[39m] [SearchResultsPage] Found 10 result cards via: .product-list.js-product-list .product-wrapper.js-product-wrapper
+[2026-05-28 20:19:37] [[32minfo[39m] [MortgageWorld] Results presence: cards=true, no-results-msg=false
+.[2026-05-28 20:19:37] [[32minfo[39m] [SearchResultsPage] Gû¦ STEP: Reading results count from UI
+[2026-05-28 20:19:38] [[32minfo[39m] [SearchResultsPage] Results count text: "Mortgage result"
+[2026-05-28 20:19:38] [[32minfo[39m] [SearchResultsPage] Found 10 result cards via: .product-list.js-product-list .product-wrapper.js-product-wrapper
+[2026-05-28 20:19:38] [[32minfo[39m] [SearchResultsPage] Using fallback card count: 10
+[2026-05-28 20:19:38] [[32minfo[39m] [MortgageWorld] G£ô Results count 10 >= 0
+.PASSED: "Search returns results with valid count"
+.
+ Scenario: "Search with high-value property"
+[2026-05-28 20:19:38] [[32minfo[39m] [MortgageWorld] Launching chromium browser (headed: false)
+.[2026-05-28 20:19:39] [[32minfo[39m] [SearchFormPage] Navigating to: https://www.mortgageadvicebureau.com/find-a-mortgage/
+[2026-05-28 20:19:44] [[32minfo[39m] [SearchFormPage] Cookie banner found via accessible button role
+[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Cookie banner dismissed successfully
+[2026-05-28 20:19:45] [[32minfo[39m] [MortgageWorld] Navigated to mortgage search page
+.[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Filling search form with: {"propertyValue":800000,"depositAmount":200000,"repaymentType":"repayment","mortgageTerm":20,"income":120000,"ltvPercentage":75}
+[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting property value: -ú800,000
+[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting deposit amount: -ú200,000
+[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting mortgage term: 20 years
+[2026-05-28 20:19:45] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting repayment type: repayment
+[2026-05-28 20:19:46] [[33mwarn[39m] [SearchFormPage] Could not set repayment type "repayment" GÇö may not be visible on current form
+[2026-05-28 20:19:46] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Setting income: -ú120,000
+[2026-05-28 20:19:46] [[32minfo[39m] [SearchFormPage] Gû¦ STEP: Submitting search form

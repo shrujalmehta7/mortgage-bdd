@@ -1,0 +1,62 @@
+{
+  "name": "mortgage-bdd-playwright",
+  "version": "1.0.0",
+  "description": "BDD Playwright test framework for Mortgage Advice Bureau",
+  "scripts": {
+    "test": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts tests/features",
+    "test:headed": "set HEADED=true&& npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts tests/features",
+    "test:search": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --tags @search tests/features",
+    "test:sort": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --tags @sorting tests/features",
+    "test:filter": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --tags @filtering tests/features",
+    "test:api": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --tags @api tests/features",
+    "test:smoke": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --tags @smoke tests/features",
+    "test:dryrun": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --dry-run tests/features",
+    "test:report": "npx cucumber-js --require-module ts-node/register --require src/utils/world.ts --require src/hooks/hooks.ts --require src/steps/searchSteps.ts --require src/steps/sortFilterSteps.ts --require src/steps/apiValidationSteps.ts --format progress-bar --format html:reports/cucumber-report.html --format json:reports/cucumber-report.json tests/features && node src/utils/generateReport.js",
+    "show:report": "node src/utils/openReport.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^12.9.0",
+    "@playwright/test": "^1.60.0",
+    "playwright": "^1.44.0",
+    "allure-cucumberjs": "^3.9.0",
+    "allure-playwright": "^3.9.0",
+    "dotenv": "^16.4.5",
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0",
+    "multiple-cucumber-html-reporter": "^3.10.0",
+    "chai": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/node": "^25.9.1",
+    "@types/uuid": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "eslint": "^10.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  },
+  "cucumber": {
+    "require": [
+      "src/hooks/*.ts",
+      "src/steps/*.ts"
+    ],
+    "requireModule": [
+      "ts-node/register"
+    ],
+    "format": [
+      "progress-bar",
+      "json:reports/cucumber-report.json",
+      "html:reports/cucumber-report.html"
+    ],
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "parallel": 2,
+    "retry": 1,
+    "retryTagFilter": "@flaky",
+    "worldParameters": {},
+    "spec": "tests/features/**/*.feature"
+  }
+}
